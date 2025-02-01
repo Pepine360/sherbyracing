@@ -3,7 +3,7 @@
 static bool timer_callback(repeating_timer_t *t)
 {
     MAX11605* max = (MAX11605*)t->user_data;
-    max->Read();
+    // max->Read();
     max->SetNewData(true);
 
     return true;
@@ -34,7 +34,7 @@ MAX11605::MAX11605(i2c_inst_t *inst, scan_t s, channel_t c, select_t sl, bool se
 
     uint8_t payload[2] = {SetupToByte(), ConfigToByte()};
 
-    i2c_write_blocking(this->i2c, this->addr, payload, 2, false);
+    // i2c_write_blocking(this->i2c, this->addr, payload, 2, false);
 
     uint32_t timer_delay = (uint32_t)((1.f / timer_freq) * 1000);
 
@@ -52,6 +52,8 @@ int8_t MAX11605::Write(uint8_t *payload, size_t len)
         return PICO_ERROR_GENERIC;
 
     i2c_write_blocking(this->i2c, this->addr, payload, len, false);
+
+    return PICO_ERROR_NONE;
 }
 
 int8_t MAX11605::Read()
@@ -102,7 +104,10 @@ int8_t MAX11605::ReadChannel(channel_t chan)
 
     i2c_write_blocking(this->i2c,this->addr, &payload, 1, false);
     sleep_us(10);
+    
     i2c_read_blocking(this->i2c, this->addr, this->buff, 1, false);
+
+    return PICO_ERROR_NONE;
 }
 
 void MAX11605::SetNewData(bool value)
@@ -110,9 +115,49 @@ void MAX11605::SetNewData(bool value)
     this->newData = value;
 }
 
+void MAX11605::SetScan(scan_t s)
+{
+    this->sc = s;
+}
+
+void MAX11605::SetChannel(channel_t chan)
+{
+    this->chan = chan;
+}
+
+void MAX11605::SetSelect(select_t sel)
+{
+    this->sel = sel;
+}
+
+void MAX11605::SetReset(bool res)
+{
+    this->reset = res;
+}
+
 bool MAX11605::GetNewData()
 {
     return this->newData;
+}
+
+scan_t MAX11605::GetScan()
+{
+    return this->sc;
+}
+
+channel_t MAX11605::GetChannel()
+{
+    return this->chan;
+}
+
+select_t MAX11605::GetSelect()
+{
+    return this->sel;
+}
+
+bool MAX11605::GetReset()
+{
+    return this->reset;
 }
 
 uint8_t MAX11605::ConfigToByte()

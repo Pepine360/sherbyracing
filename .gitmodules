@@ -1,3 +1,11 @@
-[submodule "FreeRTOS-Kenrel"]
-	path = FreeRTOS-Kenrel
+[submodule "FreeRTOS-Kernel"]
+	path = FreeRTOS-Kernel
 	url = https://github.com/FreeRTOS/FreeRTOS-Kernel
+
+[submodule "littlefs"]
+	path = littlefs
+	url = https://github.com/littlefs-project/littlefs
+	
+[submodule "can2040"]
+	path = can2040
+	url = https://github.com/KevinOConnor/can2040

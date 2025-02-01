@@ -48,11 +48,16 @@ class MAX11605
         int8_t ReadChannel(channel_t chan);
 
         void SetNewData(bool value);
-        // void SetScan(scan_t s);
-        // void SetChannel(channel_t chan);
-        // void SetSelect(select _t sel);
-        // void SetReset(bool res);
+        void SetScan(scan_t s);
+        void SetChannel(channel_t chan);
+        void SetSelect(select_t sel);
+        void SetReset(bool res);
+        
         bool GetNewData();
+        scan_t GetScan();
+        channel_t GetChannel();
+        select_t GetSelect();
+        bool  GetReset();
 
         uint8_t buff[12];
 

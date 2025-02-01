@@ -71,7 +71,7 @@ add_executable(sherbylogger
     ${CMAKE_CURRENT_LIST_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico-main/src/src/my_rtc.c
     ${CMAKE_CURRENT_LIST_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico-main/src/src/sd_timeouts.c
     ${CMAKE_CURRENT_LIST_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico-main/src/src/util.c
-    ${CMAKE_CURRENT_LIST_DIR}/pico-mcp2515-main/include/mcp2515/mcp2515.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/can2040/src/can2040.c
 ) #SR_FreeRTOS.c littlefs/lfs.c littlefs/lfs_util.c lfs_HAL.c IO_HAL.c FreeRTOS_CLI.c commands.c)
 
 pico_set_program_name(sherbylogger "sherbylogger")
@@ -95,7 +95,7 @@ target_include_directories(sherbylogger PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico-main/src/ff15/source# for our common lwipopts or any other standard includes, if required
   ${CMAKE_CURRENT_LIST_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico-main/src/include# for our common lwipopts or any other standard includes, if required
   ${CMAKE_CURRENT_LIST_DIR}/no-OS-FatFS-SD-SDIO-SPI-RPi-Pico-main/src/sd_driver
-  ${CMAKE_CURRENT_LIST_DIR}/pico-mcp2515-main/include/
+  ${CMAKE_CURRENT_LIST_DIR}/can2040/src/
 )
 
 # Add any user requested libraries
